@@ -5,8 +5,10 @@
 **So far run time is O(n)**
 
 ## Roadmap
-- cross-env this repo
-- Testing
+- [x] cross-env this repo
+- [x] Testing - 100%
+- [x] Testing coverage with Istanbul report
+- set a config file so that user doesn't need to keep setting `path` and `regex`
 - different mode (strict, loose)
 - Take args as param
 - Make it as CLI
