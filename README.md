@@ -2,6 +2,8 @@
 ## Motivation
 - Matches regex pattern in a directory or file name because Mac search is not up on par with Windows search
 
+**So far run time is O(n)**
+
 ## Roadmap
 - cross-env this repo
 - Testing
