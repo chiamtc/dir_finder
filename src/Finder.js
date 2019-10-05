@@ -38,7 +38,7 @@ class Finder {
     }
 
     setPath(value) {
-        if (typeof (value) === 'string') this.#path = value;
+        if (typeof (value) === 'string' && fs.existsSync(value)) this.#path = value;
         return new Error('Invalid "path" type. Note: only string is allowed');
     }
 

@@ -1,11 +1,12 @@
 {
   "name": "find-dir",
-  "version": "0.0.1-alpha",
+  "version": "0.0.1",
   "description": "- Matches regex pattern in a directory or file name because Mac search is not up on par with Windows search",
-  "main": "./index.js",
+  "preferGlobal": true,
   "bin": {
     "find-dir": "./bin/index.js"
   },
+  "main": "bin/index.js",
   "scripts": {
     "clear": "rm -rf test/coverage",
     "test": "cross-env mocha",
@@ -28,12 +29,13 @@
     "url": "https://github.com/chiamtc/dir_finder/issues"
   },
   "homepage": "https://github.com/chiamtc/dir_finder#readme",
-  "dependencies": {},
+  "dependencies": {
+    "commander": "^3.0.2",
+    "cross-env": "^6.0.3"
+  },
   "devDependencies": {
     "assert": "^2.0.0",
     "chai": "^4.2.0",
-    "commander": "^3.0.2",
-    "cross-env": "^6.0.3",
     "fsify": "^3.0.0",
     "mocha": "^6.2.1",
     "nyc": "^14.1.1"
