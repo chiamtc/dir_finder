@@ -5,6 +5,6 @@ module.exports={
         return JSON.parse(fs.readFileSync(filename));
     },
     writeConfig(filename, data){
-        return fs.writeFileSync(filename, data,{flag:'w'});
+        return fs.writeFileSync(filename, data);
     }
 };

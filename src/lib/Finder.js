@@ -1,5 +1,4 @@
 const fs = require('fs');
-
 class Finder {
     #path = null;
     #regex = null;

@@ -2,10 +2,11 @@
 "use strict";
 const program = require('commander');
 const boxen = require('boxen');
+const path = require('path');
+const chalk = require('chalk');
 const pkg = require('../package');
 let finder = new (require('../src/lib/Finder'));
 let config = require('../src/cli/Config');
-const fs = require('fs');
 
 program
     .version(pkg.version, '-v, --ver', 'Current version')
@@ -13,29 +14,21 @@ program
     .usage("[option flag] [value]")
     .description(pkg.description)
     .helpOption('-h, --help', 'Output help information')
-    .option('-p, --path <pathname>', 'Set path. Usage: `find-dir --path ~/Desktop`', (pathname) => {
+    .option('-p, --path <pathname>', `Set path. Usage: ${chalk.bgRedBright('find-dir --path ~/Desktop')}`, (pathname) => {
         finder.setPath(pathname);
-        const currentConfig = config.readConfig('./config.json');
-        config.writeConfig('./config.json', JSON.stringify({pathname, regexp:currentConfig.regexp}));
+        config.writeConfig('./config.json', JSON.stringify({pathname}));
         console.log(`Pathname "${config.readConfig(`./config.json`).pathname}" set successfully`);
     })
-    .option('-r, --regexp <queryParam>', 'Set path. Usage: `find-dir --regex "queryA queryB"`', (queryParam) => {
-        finder.setRegex(queryParam);
-        const currentConfig = config.readConfig('./config.json');
-        config.writeConfig('./config.json', JSON.stringify({pathname:currentConfig.pathname,regexp:queryParam}));
-        console.log(`Search query "${config.readConfig(`./config.json`).regexp}" set successfully`);
-    })
-    .option('-s, --search', 'Search the pathname with query parameters in config.json. Usage:`find-dir --search',()=>{
-        const settings = config.readConfig('./config.json');
+    .option('-s, --search <queryParam>', `Search the pathname with query parameters in config.json. Usage: ${chalk.bgRedBright('find-dir --search "unicorn"')}`, (queryParam) => {
+        const settings = config.readConfig(path.join(__dirname, '../config.json'));
         finder.setPath(settings.pathname);
-        finder.setRegex(settings.regexp);
+        finder.setRegex(queryParam);
         console.log(finder.search());
     })
-    .option('-c, --config', 'Display current config', () => {
-        const settings = config.readConfig('./config.json');
+    .option('-c, --config', `Display current config. Usage: ${chalk.bgRedBright('find-dir --config')}`, () => {
+        const settings = config.readConfig(path.join(__dirname, '../config.json'));
         finder.setPath(settings.pathname);
-        finder.setRegex(settings.regexp);
-        console.log(boxen(`Pathname:${finder.getPath()}\n\nRegExp:  ${finder.getRegex()}`, {padding:1}))
+        console.log(boxen(`Pathname:${finder.getPath()}`, {padding: 1}))
     });
 
 if (!process.argv.slice(2).length) program.outputHelp();
