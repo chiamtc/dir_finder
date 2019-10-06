@@ -1,6 +1,6 @@
 const os = require('os');
 const assert = require('chai').assert;
-const finder = require('../src/Finder');
+const finder = require('../src/lib/Finder');
 const fsify = require('fsify')({
     cwd: os.tmpdir(),
     persistent: false,
@@ -95,13 +95,13 @@ describe('Finder test suite', () => {
         ]
     });
 
-    it('tests Finder match() with empty inside directory', () => {
+    it('tests Finder search() with empty inside directory', () => {
         return fsify(emptyStructure)
             .then((structure) => structure)
             .then((output) => {
                 Finder.setPath(output[0].name);
                 Finder.setRegex("Some File");
-                assert.equal(Finder.match(), 'This directory is empty');
+                assert.equal(Finder.search(), 'This directory is empty');
             });
     })
 
@@ -160,23 +160,23 @@ describe('Finder test suite', () => {
             });
     });
 
-    it('tests Finder match() without setting path or regex', () => {
+    it('tests Finder search() without setting path or regex', () => {
         return fsify(structure)
             .then((structure) => structure)
             .then((output) => {
-                assert.equal(Finder.match(), "Path or Query have not been set");
+                assert.equal(Finder.search(), "Path or Query have not been set");
             });
     });
 
-    it('tests Finder match()', () => {
+    it('tests Finder search()', () => {
         return fsify(structure)
             .then((structure) => structure)
             .then((output) => {
                 Finder.setPath(output[0].name);
                 Finder.setRegex("Some File");
-                assert.equal(Finder.match().length, 2);
-                assert.equal(Finder.match()[0], structure[0].contents[0].name);
-                assert.equal(Finder.match()[1], structure[0].contents[4].name);
+                assert.equal(Finder.search().length, 2);
+                assert.equal(Finder.search()[0], structure[0].contents[0].name);
+                assert.equal(Finder.search()[1], structure[0].contents[4].name);
             });
     });
 });

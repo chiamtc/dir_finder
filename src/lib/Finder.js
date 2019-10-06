@@ -51,11 +51,11 @@ class Finder {
      * @description
      * Get an array of string and matches the RegExp pattern and return in Array<String>
      * @analysis
-     * Array of string from dir() is being looped to match() the query.
-     * Big O notation - O(n) for the loop &  O(1) for the regexp match()
+     * Array of string from dir() is being looped to search() the query.
+     * Big O notation - O(n) for the loop &  O(1) for the regexp search()
      * @returns {string} | Array<String>
      */
-    match() {
+    search() {
         if(this.getPath() !== null && this.getRegex() !== null) {
             let matches = [];
             const files = this.dir();
