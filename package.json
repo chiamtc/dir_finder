@@ -8,12 +8,12 @@
   },
   "main": "bin/index.js",
   "scripts": {
-    "clear": "rm -rf test/coverage",
+    "clear": "cross-env rm -rf test/coverage",
     "test": "cross-env mocha",
     "test:coverageF": "cross-env mkdir test/coverage",
     "test:coverageR": "cross-env nyc --reporter=html --reporter=text --report-dir=test/coverage mocha",
     "test:coverage": "npm run clear && npm run test:coverageF && npm run test:coverageR",
-    "find": "cross-env node index.js",
+    "find": "cross-env node example/example.js",
     "cli": "node bin"
   },
   "engines": {
@@ -38,6 +38,7 @@
   "devDependencies": {
     "assert": "^2.0.0",
     "chai": "^4.2.0",
+    "chai-string": "^1.5.0",
     "fsify": "^3.0.0",
     "mocha": "^6.2.1",
     "nyc": "^14.1.1"
