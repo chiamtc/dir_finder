@@ -54,17 +54,18 @@ find-dir search "stringA stringB" ~/
 Look for `<valid output directory>/find-dir.html`
 
 
-##Development
+## Development
 `npm run cli` to launch CLI locally for validation testing
 
 `npm run find` to use in NodeJs environment for validation testing
 
-##Testing
+## Testing
 `npm run test` to test all test suites and cases using Mocha
 
 `npm run test:coverage` to test all test suites and cases using Mocha and generate coverage report `test/coverage` using Istanbul
 
 ### Testing Resources
+
 Testing library - `mocha`, `chai`, `chai-string`, `assert`
 
 Filesystem mock - `fsify`
